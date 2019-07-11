@@ -15,7 +15,10 @@ namespace NbaSuperStars.IO
 
         public string Read()
         {
-            return this.streamReader.ReadToEnd();
+            using (this.streamReader)
+            {
+                return this.streamReader.ReadToEnd();           
+            }
         }
     }
 }
