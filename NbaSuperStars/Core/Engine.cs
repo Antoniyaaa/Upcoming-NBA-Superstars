@@ -38,10 +38,11 @@ namespace NbaSuperStars.Core
                 string playersJsonString = fileReader.Read();
 
                 List<NbaPlayer> players = Deserializer.JsonDeserializer(playersJsonString);
-                string filteredPlayers = FilteredListToString(FilterByYearsAndRating(players, maxYearsPlayed, minRating));
+                List<NbaPlayer> filteredPlayers = FilterByYearsAndRating(players, maxYearsPlayed, minRating); 
+                string filteredPlayersString = FilteredListToString(filteredPlayers);
 
                 IWriter fileWriter = new FileWriter(csvFilePath);
-                fileWriter.Write(filteredPlayers);
+                fileWriter.Write(filteredPlayersString);
 
                 result = $"Data sucessfully imported in {csvFilePath}";
             }
