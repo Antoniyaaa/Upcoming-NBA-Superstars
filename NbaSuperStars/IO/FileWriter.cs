@@ -15,8 +15,10 @@ namespace NbaSuperStars.IO
 
         public void Write(string content)
         {
-            this.streamWriter.Write(content);
-            this.streamWriter.Close();
+            using (this.streamWriter)
+            {
+                this.streamWriter.Write(content);
+            }
         }
     }
 }
